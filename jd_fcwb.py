@@ -91,7 +91,8 @@ def HelpFriends(i):
 	r = JD_API_HOST('happyDigHelp')
 	try:
 		if r and r['success']:
-			print(f"{r['errMsg']}\n邀请人数: {s.personNum+1}\n")
+			s.personNum += 1
+			print(f"{r['errMsg']}\n邀请人数: {s.personNum}\n")
 		elif r['code'] in [16144, 16149]:
 			print(f"{r['errMsg']}\n")
 		else:
@@ -150,7 +151,7 @@ def start():
 	ckList = jdCookie()
 	Nameck = [c for c in ckList if re_pin(c) in Names]
 	[BoostCode(c) for c in Nameck]
-	inviterList and inviteCodeList and [HelpFriends(c) for c in ckList if c not in Namek]
+	inviterList and inviteCodeList and [HelpFriends(c) for c in ckList if c not in Nameck]
 	[DigTreasure(c) for c in Nameck]
 
 if __name__ == '__main__':
