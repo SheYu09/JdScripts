@@ -49,8 +49,6 @@ def JD_API_HOST(e = 'happyDigHome', t = False):
 	if e in ['happyDigHome', 'happyDigHelp']:
 		appid = e == 'happyDigHome' and 'ce6c2' or '8dd95'
 		h5st(appid)
-	s.headers['Cookie'] = s.headers['Cookie'][-1] == ';' and s.headers['Cookie'][:-1].replace(';', '; ') or s.headers['Cookie'].replace(';', '; ')
-	
 	r = s.get('https://api.m.jd.com/', verify=False, timeout=30)
 	return r.json() if r.content else ''
 
