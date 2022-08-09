@@ -7,7 +7,7 @@ Author: SheYu09, HarbourJ
 cron: 0 0 * * * jd_fcwb.py
 new Env('灭菌挖宝')
 '''
-from GetJDUser import *
+from newUserInfo import *
 requests.packages.urllib3.disable_warnings()
 
 def JD_API_HOST(e = 'happyDigHome', t = False):
