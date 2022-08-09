@@ -56,7 +56,7 @@ def JD_API_HOST(e = 'happyDigHome', t = False):
 
 def BoostCode(i):
 	s.headers['Cookie'] = i
-	if newUserInfo(): return
+	if GetJDUser(): return
 	print(f"开始【京东账号{ckList.index(i)+1}】{s.userLevel}级 {s.levelName}: {s.nickName}\n")
 	r = JD_API_HOST()
 	try:
@@ -78,7 +78,7 @@ def BoostCode(i):
 
 def HelpFriends(i):
 	s.headers['Cookie'] = i
-	if newUserInfo(): return
+	if GetJDUser(): return
 	s.inviter, s.inviteCode, s.personNum = inviterList[0], inviteCodeList[0], personNumList[0]
 	print(f"【用户{ckList.index(i)+1}（{s.nickName}）助力】{s.inviter}\n")
 	if s.personNum >= 111:
@@ -104,7 +104,7 @@ def HelpFriends(i):
 def DigTreasure(i = False):
 	if i:
 		s.headers['Cookie'] = i
-		if newUserInfo(): return
+		if GetJDUser(): return
 		print(f"开始挖宝【京东账号{ckList.index(i)+1}】{s.userLevel}级 {s.levelName}: {s.nickName}\n")
 	for i in range(3):
 		s.round = i+1
@@ -150,7 +150,7 @@ def start():
 	ckList = jdCookie()
 	Nameck = [c for c in ckList if re_pin(c) in Names]
 	[BoostCode(c) for c in Nameck]
-	inviterList and inviteCodeList and [HelpFriends(c) for c in ckList if i not in Namek]
+	inviterList and inviteCodeList and [HelpFriends(c) for c in ckList if c not in Namek]
 	[DigTreasure(c) for c in Nameck]
 
 if __name__ == '__main__':
