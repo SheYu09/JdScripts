@@ -80,12 +80,15 @@ def HelpFriends(i):
 	s.inviter, s.inviteCode, s.personNum = inviterList[0], inviteCodeList[0], personNumList[0]
 	print(f"【用户{ckList.index(i)+1}（{s.nickName}）助力】{s.inviter}\n")
 	if s.personNum >= 111:
+		print(len(inviterList))
 		if len(inviterList) == 1 and len(inviteCodeList) == 1:
 			[DigTreasure(c) for c in Nameck]
 			exit()
 		else:
 			inviterList.remove(s.inviter)
 			inviteCodeList.remove(s.inviteCode)
+			personNumList.remove(s.personNum)
+			return
 	r = JD_API_HOST('happyDigHelp')
 	try:
 		if r and r['success']:
@@ -96,8 +99,6 @@ def HelpFriends(i):
 		else:
 			print(f"{r}\n")
 	except Exception as err:
-		print(r)
-		exit()
 		print(f"HelpFriends Error: {err}\n")
 
 def DigTreasure(i = False):
@@ -142,7 +143,7 @@ def DigTreasure(i = False):
 			print(f"DigTreasure Error: {err}\n")
 
 def start():
-	global Names, ckList, inviterList, inviteCodeList, personNumList
+	global Nameck, ckList, inviterList, inviteCodeList, personNumList
 	print("🔔发财挖宝, 开始!\n")
 	inviterList, inviteCodeList, personNumList = list(), list(), list()
 	Names = Name()
@@ -154,4 +155,3 @@ def start():
 
 if __name__ == '__main__':
 	start()
-
