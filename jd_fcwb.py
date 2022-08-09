@@ -12,7 +12,7 @@ requests.packages.urllib3.disable_warnings()
 
 def JD_API_HOST(e = 'happyDigHome', t = False):
 	s.headers['Referer'] = 'https://bnzf.jd.com/'
-	s.headers['User-Agent'] = userAgent(True, False)
+	s.headers['User-Agent'] = userAgent()
 	s.params = {
 		'functionId': e,
 		'body': '',
@@ -112,7 +112,7 @@ def DigTreasure(i = False):
 		try:
 			if r and r['success']:
 				for i in r['data']['roundList']:
-					if i['state'] != 0: break
+					if i['state'] != 0: continue
 					for i in i['chunks']:
 						if i['type'] == 1:
 							print("半黑号……, 跳过助力此账号\n")
