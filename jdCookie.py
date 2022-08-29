@@ -43,14 +43,16 @@ def JD_API_HOST(C):
 
 def COOKIE():
 	global ptkeyList, ptpinList
-	ck = JD_API_HOST(stack()[0][3])
-	ptkeyList = re_key('pt_key=.*?;pt_pin=.*?;', ck)
+	s.params['searchValue'] = 'JD_' + stack()[0][3]
+	ck = JD_API_HOST()
+	ptkeyList = re_key('pt_key=.*?;', ck) + re_key('pt_pin=.*?;', ck)
 	ptpinList = re_key('pt_pin=(.*?);', ck)
 
 def WSKEY():
 	global wskeyList, wspinList
-	ck = JD_API_HOST(stack()[0][3])
-	wskeyList = re_key('pin=.*?;wskey=.*?;', ck)
+	s.params['searchValue'] = 'JD_' + stack()[0][3]
+	ck = JD_API_HOST()
+	wskeyList = re_key('pin=.*?;', ck) + re_key('wskey=.*?;', ck)
 	wspinList = re_key('pin=(.*?);', ck)
 
 def jdCookie():
