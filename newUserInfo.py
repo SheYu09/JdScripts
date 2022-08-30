@@ -39,7 +39,7 @@ def getToken():
 @set_cookies
 def newUserInfo():
 	try:
-		s.Token = 'f' # environ["JlhbToken"]
+		s.Token = environ["JlhbToken"]
 	except:
 		print("自行添加环境变量：JlhbToken\n")
 		exit()
