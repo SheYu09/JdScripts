@@ -28,7 +28,7 @@ def getToken():
 		r = dict_from_cookiejar(s.cookies)
 	try:
 		if 'fake_' in r['pt_key']:
-			print(f"【提示】wskey已失效, 京东账号 {re_key('pin=(.*?);', s.headers['Cookie'])}\n请重新抓包获取\nhttps://api.m.jd.com/client.action?functionId=newUserInfo\n")
+			print(f"【提示】wskey已失效, 京东账号 {findall('pin=(.*?);', s.headers['Cookie'])}\n请重新抓包获取\nhttps://api.m.jd.com/client.action?functionId=newUserInfo\n")
 			return True
 		elif 'app_open' in r['pt_key']:
 			s.headers['Cookie'] = ';'.join([f'{i}={r[i]}' for i in r])
@@ -39,7 +39,7 @@ def getToken():
 @set_cookies
 def newUserInfo():
 	try:
-		s.Token = environ["JlhbToken"]
+		s.Token = 'f' # environ["JlhbToken"]
 	except:
 		print("自行添加环境变量：JlhbToken\n")
 		exit()
@@ -59,9 +59,8 @@ def newUserInfo():
 			s.nickName = r['petName'] and r['petName'] or r['unickName']
 			s.userLevel = r['userLevel']
 		else:
-			print(f"【提示】Cookie已失效, 京东账号 {re_key('pin=(.*?);', s.headers['Cookie'])}\n请重新抓包获取\nhttps://bean.m.jd.com/bean/signIndex.action\n")
+			print(f"【提示】Cookie已失效, 京东账号 {findall('pin=(.*?);', s.headers['Cookie'])}\n请重新抓包获取\nhttps://bean.m.jd.com/bean/signIndex.action\n")
 			return True
 	except Exception as err:
 		print(f"newUserInfo Error: {err}\n")
 		return True
-

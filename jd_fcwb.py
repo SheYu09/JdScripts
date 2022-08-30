@@ -148,8 +148,8 @@ def start():
 	inviterList, inviteCodeList, personNumList = list(), list(), list()
 	Names = Name()
 	ckList = jdCookie()
-	Nameck = [c for c in ckList if re_pin(c) in Names]
-	[BoostCode(c) for c in Nameck]
+	Nameck = [c for c in ckList if findall('pin=(.*?);', c)[0] in Names]
+	[BoostCode(c) for c in ckList[1009:1010]]
 	inviterList and inviteCodeList and [HelpFriends(c) for c in ckList if c not in Nameck]
 	[DigTreasure(c) for c in Nameck]
 

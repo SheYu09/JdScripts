@@ -243,7 +243,7 @@ def start():
 	ckList = jdCookie()
 	es = list()
 	s.u = 1
-	Namek = [i for i in ckList if re_pin(i) in Names]
+	Namek = [i for i in ckList if findall('pin=(.*?);', i)[0] in Names]
 	[BoostCode(i) for i in Namek]
 	es and [jdkoi(i) for i in ckList if i not in Namek]
 	h5receiveRedpacketAll()
