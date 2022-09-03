@@ -8,7 +8,7 @@ cron: 7 9 * * * jd_promote.py
 new Env('平行时空')
 '''
 try:
-	from pxkj import start
+	from jd_promote import start
 except:
 	print('未知错误...')
 	exit()
